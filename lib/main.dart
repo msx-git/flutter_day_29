@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_day_29/views/pages/main_page.dart';
 
-import 'views/bottom_navigation_stacked.dart';
-import 'views/navigation_rails_page.dart';
+import 'views/pages/classwork/bottom_navigation_stacked.dart';
+import 'views/pages/classwork/navigation_rails_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: PageView(
         children: const [
+          MainPage(),
           NavigationRails(),
           BottomNavigationStacked(),
         ],
