@@ -48,11 +48,11 @@ class _HomePageState extends State<HomePage> {
                 label: Text('Home'),
               ),
               NavigationRailDestination(
-                icon: Icon(Icons.home),
+                icon: Icon(Icons.search),
                 label: Text('Search'),
               ),
               NavigationRailDestination(
-                icon: Icon(Icons.home),
+                icon: Icon(Icons.settings),
                 label: Text('Settings'),
               ),
             ],
