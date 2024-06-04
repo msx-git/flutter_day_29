@@ -16,36 +16,73 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: IndexedStack(
-        index: currentIndex,
-        children: const [
-          Home(),
-          Statistics(),
-          Profile(),
-        ],
-      ),
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: currentIndex,
-        onDestinationSelected: (value) => setState(() => currentIndex = value),
-        destinations: const [
-          NavigationDestination(
-            icon: Icon(Icons.home_outlined),
-            selectedIcon: Icon(Icons.home),
-            label: 'Home',
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        var isMobile = constraints.maxWidth < 600;
+        return Scaffold(
+          body: Row(
+            children: [
+              if (!isMobile)
+                NavigationRail(
+                  destinations: const [
+                    NavigationRailDestination(
+                      icon: Icon(Icons.home_outlined),
+                      selectedIcon: Icon(Icons.home),
+                      label: Text('Home'),
+                    ),
+                    NavigationRailDestination(
+                      selectedIcon: Icon(Icons.insert_chart),
+                      icon: Icon(Icons.insert_chart_outlined),
+                      label: Text('Statistics'),
+                    ),
+                    NavigationRailDestination(
+                      selectedIcon: Icon(Icons.person_rounded),
+                      icon: Icon(Icons.person_outline_rounded),
+                      label: Text('Profile'),
+                    ),
+                  ],
+                  selectedIndex: currentIndex,
+                  onDestinationSelected: (value) =>
+                      setState(() => currentIndex = value),
+                ),
+              Expanded(
+                child: IndexedStack(
+                  index: currentIndex,
+                  children: const [
+                    Home(),
+                    Statistics(),
+                    Profile(),
+                  ],
+                ),
+              ),
+            ],
           ),
-          NavigationDestination(
-            selectedIcon: Icon(Icons.insert_chart),
-            icon: Icon(Icons.insert_chart_outlined),
-            label: 'Statistics',
-          ),
-          NavigationDestination(
-            selectedIcon: Icon(Icons.person_rounded),
-            icon: Icon(Icons.person_outline_rounded),
-            label: 'Profile',
-          ),
-        ],
-      ),
+          bottomNavigationBar: isMobile
+              ? NavigationBar(
+                  selectedIndex: currentIndex,
+                  onDestinationSelected: (value) =>
+                      setState(() => currentIndex = value),
+                  destinations: const [
+                    NavigationDestination(
+                      icon: Icon(Icons.home_outlined),
+                      selectedIcon: Icon(Icons.home),
+                      label: 'Home',
+                    ),
+                    NavigationDestination(
+                      selectedIcon: Icon(Icons.insert_chart),
+                      icon: Icon(Icons.insert_chart_outlined),
+                      label: 'Statistics',
+                    ),
+                    NavigationDestination(
+                      selectedIcon: Icon(Icons.person_rounded),
+                      icon: Icon(Icons.person_outline_rounded),
+                      label: 'Profile',
+                    ),
+                  ],
+                )
+              : null,
+        );
+      },
     );
   }
 }
