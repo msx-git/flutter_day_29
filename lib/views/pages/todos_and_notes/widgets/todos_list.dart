@@ -108,6 +108,10 @@ class _TodosListState extends State<TodosList> {
                           border: Border.all(color: Colors.black26)),
                       child: ListTile(
                         contentPadding: const EdgeInsets.only(left: 16),
+                        leading: Checkbox(
+                          value: todo.isDone,
+                          onChanged: (value) {},
+                        ),
                         title: Text(todo.title),
                         subtitle: Text(DateFormat('dd-MMMM, yyyy')
                             .format(DateTime.parse(todo.date))),

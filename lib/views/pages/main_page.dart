@@ -48,7 +48,7 @@ class _MainPageState extends State<MainPage> {
               Expanded(
                 child: IndexedStack(
                   index: currentIndex,
-                  children: const [
+                  children: [
                     Home(),
                     Statistics(),
                     Profile(),

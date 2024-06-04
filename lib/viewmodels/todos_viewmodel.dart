@@ -8,7 +8,7 @@ class TodosViewModel {
   List<Todo> _list = [];
 
   Future<List<Todo>> get todos async {
-    _list = await todosRepository.getProducts();
+    _list = await todosRepository.getTodos();
     return [..._list];
   }
 

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../../viewmodels/todos_viewmodel.dart';
+
 class Statistics extends StatelessWidget {
-  const Statistics({super.key});
+  Statistics({super.key});
+
+  final todosViewmodel = TodosViewModel();
 
   @override
   Widget build(BuildContext context) {
@@ -10,6 +14,36 @@ class Statistics extends StatelessWidget {
         title: const Text('Statistics'),
       ),
       drawer: const Drawer(),
+      body: FutureBuilder(
+        future: todosViewmodel.todos,
+        builder: (context, snapshot) {
+          var doneCount = snapshot.data
+              ?.where((todo) {
+                return todo.isDone;
+              })
+              .toList()
+              .length;
+          var notDoneCount = snapshot.data
+              ?.where((todo) {
+                return !todo.isDone;
+              })
+              .toList()
+              .length;
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Text("Loading");
+          } else if (!snapshot.hasData) {
+            return Text("No data");
+          }
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("Completed todos: $doneCount"),
+              Text("Not Completed todos: $notDoneCount"),
+            ],
+          );
+        },
+      ),
     );
   }
 }

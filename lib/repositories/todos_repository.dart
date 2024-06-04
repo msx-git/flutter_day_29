@@ -4,8 +4,8 @@ import '../services/todos_http_service.dart';
 class TodosRepository {
   final todosHttpService = TodosHttpService();
 
-  Future<List<Todo>> getProducts() async {
-    return todosHttpService.fetchTodos();
+  Future<List<Todo>> getTodos() async {
+    return await todosHttpService.fetchTodos();
   }
 
   Future<Todo> addTodo({
