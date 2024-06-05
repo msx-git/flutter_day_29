@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../models/todo.dart';
+import '../../../../../models/todo.dart';
 
 class ManageTodoDialog extends StatefulWidget {
   final Todo? todo;

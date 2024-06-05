@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../models/todo.dart';
-import '../../../../viewmodels/todos_viewmodel.dart';
+import '../../../../../models/todo.dart';
+import '../../../../../viewmodels/todos_viewmodel.dart';
 import 'manage_todo_dialog.dart';
 
 class TodosList extends StatefulWidget {
@@ -62,7 +63,9 @@ class _TodosListState extends State<TodosList> {
         );
         setState(() {});
       } catch (e) {
-        print(e);
+        if (kDebugMode) {
+          print(e);
+        }
       }
     }
   }
@@ -101,11 +104,14 @@ class _TodosListState extends State<TodosList> {
                     final todo = todos[index];
                     return Container(
                       margin: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 5),
+                        horizontal: 20,
+                        vertical: 5,
+                      ),
                       decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(14),
-                          border: Border.all(color: Colors.black26)),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(14),
+                        border: Border.all(color: Colors.black26),
+                      ),
                       child: ListTile(
                         contentPadding: const EdgeInsets.only(left: 16),
                         leading: Checkbox(

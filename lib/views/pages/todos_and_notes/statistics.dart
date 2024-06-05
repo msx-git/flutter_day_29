@@ -30,9 +30,9 @@ class Statistics extends StatelessWidget {
               .toList()
               .length;
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Text("Loading");
+            return const Text("Loading");
           } else if (!snapshot.hasData) {
-            return Text("No data");
+            return const Text("No data");
           }
           return Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,

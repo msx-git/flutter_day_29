@@ -16,7 +16,7 @@ class _NotesListState extends State<NotesList> {
     return Scaffold(
       appBar: AppBar(title: const Text('Notes')),
       body: FutureBuilder(
-        future: notesViewModel.getNotes(),
+        future: notesViewModel.notes,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(

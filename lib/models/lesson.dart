@@ -1,12 +1,17 @@
+import 'package:json_annotation/json_annotation.dart';
+
 import 'quiz.dart';
 
-class Lesson{
+part 'lesson.g.dart';
+
+@JsonSerializable()
+class Lesson {
   String id;
   String courseId;
   String title;
   String description;
   String videoUrl;
-  List<Quiz> quizes;
+  List<Quiz> quizzes;
 
   Lesson({
     required this.id,
@@ -14,6 +19,19 @@ class Lesson{
     required this.title,
     required this.description,
     required this.videoUrl,
-    required this.quizes,
+    required this.quizzes,
   });
+
+  factory Lesson.fromJson(Map<String, dynamic> json) {
+    return _$LessonFromJson(json);
+  }
+
+  Map<String, dynamic> toJson() {
+    return _$LessonToJson(this);
+  }
+
+  @override
+  String toString() {
+    return 'Lesson{id: $id, courseId: $courseId, title: $title, description: $description, videoUrl: $videoUrl, quizes: $quizzes}';
+  }
 }

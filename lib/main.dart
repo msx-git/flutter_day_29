@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_day_29/views/pages/main_page.dart';
 
-import 'views/pages/classwork/bottom_navigation_stacked.dart';
-import 'views/pages/classwork/navigation_rails_page.dart';
+import 'constants/app_theme.dart';
+import 'utils/route_generator.dart';
+import 'views/pages/main_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,19 +16,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.teal,
-          foregroundColor: Colors.white,
-        )
-      ),
-      home: PageView(
-        children: const [
-          MainPage(),
-          NavigationRails(),
-          BottomNavigationStacked(),
-        ],
-      ),
+      theme: AppTheme.appTheme,
+      home: const MainPage(),
+      onGenerateRoute: (settings) => RouteGenerator.generate(settings),
     );
   }
 }

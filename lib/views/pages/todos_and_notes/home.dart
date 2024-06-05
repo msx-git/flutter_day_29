@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'widgets/notes_list.dart';
-import 'widgets/todos_list.dart';
+import 'package:flutter_day_29/utils/route_names.dart';
+import 'package:flutter_day_29/views/pages/todos_and_notes/widgets/course/courses_list.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -24,33 +22,25 @@ class Home extends StatelessWidget {
             crossAxisCount: 2,
             children: [
               GestureDetector(
-                onTap: () => Navigator.push(
-                  context,
-                  CupertinoPageRoute(
-                    builder: (context) => const TodosList(),
-                  ),
-                ),
+                onTap: () => Navigator.pushNamed(context, RouteNames.todosList),
                 child: const Card(
                   child: Center(
                     child: Text(
                       'Todos',
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                     ),
                   ),
                 ),
               ),
               GestureDetector(
-                onTap: () => Navigator.push(
-                  context,
-                  CupertinoPageRoute(
-                    builder: (context) => const NotesList(),
-                  ),
-                ),
+                onTap: () => Navigator.pushNamed(context, RouteNames.notesList),
                 child: const Card(
                   child: Center(
                     child: Text(
                       'Notes',
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                     ),
                   ),
                 ),
@@ -61,9 +51,12 @@ class Home extends StatelessWidget {
           /// Courses
           const Padding(
             padding: EdgeInsets.only(left: 20.0),
-            child: Text('Courses',style: TextStyle(fontWeight: FontWeight.w500,fontSize: 30),),
+            child: Text(
+              'Courses',
+              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 30),
+            ),
           ),
-
+          CoursesList()
         ],
       ),
     );

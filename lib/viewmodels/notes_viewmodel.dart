@@ -7,7 +7,7 @@ class NotesViewmodel {
 
   List<Note> _list = [];
 
-  Future<List<Note>> getNotes() async {
+  Future<List<Note>> get notes async {
     _list = await notesRepository.getNotes();
     return [..._list];
   }
