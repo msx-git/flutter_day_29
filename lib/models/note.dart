@@ -1,10 +1,5 @@
-import 'package:json_annotation/json_annotation.dart';
-
-part 'note.g.dart';
-
-@JsonSerializable()
 class Note {
-  final String id;
+  final int id;
   String title;
   String content;
   String createdDate;
@@ -17,10 +12,20 @@ class Note {
   });
 
   factory Note.fromJson(Map<String, dynamic> json) {
-    return _$NoteFromJson(json);
+    return Note(
+      id: json['id'] as int,
+      title: json['title'] as String,
+      content: json['content'] as String,
+      createdDate: json['created_date'] as String,
+    );
   }
 
   Map<String, dynamic> toJson() {
-    return _$NoteToJson(this);
+    return {
+      'id': id,
+      'title': title,
+      'content': content,
+      'created_date': createdDate,
+    };
   }
 }

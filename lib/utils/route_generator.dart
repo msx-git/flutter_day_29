@@ -17,7 +17,7 @@ class RouteGenerator {
     } else if (settings.name == RouteNames.todosList) {
       return CupertinoPageRoute(builder: (context) => const TodosList());
     } else if (settings.name == RouteNames.notesList) {
-      return CupertinoPageRoute(builder: (context) => const NotesList());
+      return CupertinoPageRoute(builder: (context) => NotesList());
     } else if (settings.name == RouteNames.courseDetails) {
       return CupertinoPageRoute(
         builder: (context) =>
