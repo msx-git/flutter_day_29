@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_day_29/utils/route_names.dart';
 import 'package:flutter_day_29/views/pages/todos_and_notes/widgets/course/courses_list.dart';
 
+import '../../../services/auth_http_service.dart';
+import '../auth/sign_in.dart';
+
 class Home extends StatelessWidget {
   const Home({super.key});
 
@@ -11,7 +14,7 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Todos and Notes'),
       ),
-      drawer: const Drawer(),
+      drawer: const Drawer(child: CustomDrawer()),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -59,6 +62,35 @@ class Home extends StatelessWidget {
           CoursesList()
         ],
       ),
+    );
+  }
+}
+
+class CustomDrawer extends StatelessWidget {
+  const CustomDrawer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SafeArea(
+          child: ListTile(
+            title: const Text('Tizimdan chiqish'),
+            trailing: const Icon(Icons.exit_to_app_rounded),
+            onTap: () {
+              AuthHttpServices.logout();
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (ctx) {
+                    return const LoginScreen();
+                  },
+                ),
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 }

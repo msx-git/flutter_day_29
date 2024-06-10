@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'home.dart';
+
 class Profile extends StatelessWidget {
   const Profile({super.key});
 
@@ -9,7 +11,7 @@ class Profile extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Profile'),
       ),
-      drawer: const Drawer(),
+      drawer: const Drawer(child: CustomDrawer()),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,

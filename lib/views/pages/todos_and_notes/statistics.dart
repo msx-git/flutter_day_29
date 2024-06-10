@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../viewmodels/todos_viewmodel.dart';
+import 'home.dart';
 
 class Statistics extends StatelessWidget {
   Statistics({super.key});
@@ -13,7 +14,7 @@ class Statistics extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Statistics'),
       ),
-      drawer: const Drawer(),
+      drawer: const Drawer(child: CustomDrawer()),
       body: FutureBuilder(
         future: todosViewmodel.todos,
         builder: (context, snapshot) {

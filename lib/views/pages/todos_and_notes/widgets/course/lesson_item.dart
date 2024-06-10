@@ -70,10 +70,6 @@ class _LessonItemState extends State<LessonItem> {
                       bottom: 0,
                       right: 0,
                       child: IconButton(
-                        style: const ButtonStyle(
-                          backgroundColor:
-                              WidgetStatePropertyAll<Color>(Colors.black),
-                        ),
                         onPressed: () {
                           setState(() {
                             _controller.value.isPlaying
