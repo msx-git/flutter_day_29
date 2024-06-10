@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_day_29/services/database/local_database.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthHttpServices {
@@ -52,6 +53,16 @@ class AuthHttpServices {
     }
   }
 
+  Future<void> resetPassword() async {
+    Uri url = Uri.parse(
+        "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=$_apiKey");
+    final http.Response response = await http.post(url,body: {
+      'requestType':"PASSWORD_RESET",
+      'email':'msx.tuit@gmail.com'
+    });
+    print(response.body);
+  }
+
   Future<void> register(String email, String password) async {
     await _authenticate(email, password, "signUp");
   }
@@ -79,4 +90,7 @@ class AuthHttpServices {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     sharedPreferences.clear();
   }
+
+
+
 }

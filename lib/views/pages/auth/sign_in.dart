@@ -77,6 +77,8 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               const SizedBox(height: 30),
               TextFormField(
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: "Elektron pochta",
@@ -90,11 +92,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
                 onSaved: (newValue) {
                   //? save email
-                  email = newValue;
+                  email = newValue!.trim();
                 },
               ),
               const SizedBox(height: 10),
               TextFormField(
+                textInputAction: TextInputAction.done,
                 obscureText: true,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -109,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
                 onSaved: (newValue) {
                   //? save password
-                  password = newValue;
+                  password = newValue!.trim();
                 },
               ),
               const SizedBox(height: 20),

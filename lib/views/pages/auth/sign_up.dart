@@ -80,8 +80,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 const SizedBox(height: 30),
                 TextFormField(
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12)),
                     labelText: "Elektron pochta",
                   ),
                   validator: (value) {
@@ -93,15 +96,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   },
                   onSaved: (newValue) {
                     //? save email
-                    email = newValue;
+                    email = newValue!.trim();
                   },
                 ),
                 const SizedBox(height: 10),
                 TextFormField(
                   controller: _passwordController,
+                  textInputAction: TextInputAction.next,
                   obscureText: true,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12)),
                     labelText: "Parol",
                   ),
                   validator: (value) {
@@ -113,15 +118,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   },
                   onSaved: (newValue) {
                     //? save password
-                    password = newValue;
+                    password = newValue!.trim();
                   },
                 ),
                 const SizedBox(height: 10),
                 TextFormField(
                   controller: _passwordConfirmController,
+                  textInputAction: TextInputAction.done,
                   obscureText: true,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12)),
                     labelText: "Parolni tasdiqlash",
                   ),
                   validator: (value) {
@@ -138,16 +145,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   },
                   onSaved: (newValue) {
                     //? save password confirm
-                    passwordConfirm = newValue;
+                    passwordConfirm = newValue!.trim();
                   },
                 ),
                 const SizedBox(height: 20),
                 isLoading
                     ? const Center(child: CircularProgressIndicator())
                     : FilledButton(
-                  onPressed: submit,
-                  child: const Text("Ro'yxatdan O'tish"),
-                ),
+                        onPressed: submit,
+                        child: const Text("Ro'yxatdan O'tish"),
+                      ),
                 const SizedBox(height: 20),
                 TextButton(
                   onPressed: () {

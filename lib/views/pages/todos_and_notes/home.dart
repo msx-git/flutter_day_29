@@ -14,7 +14,7 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Todos and Notes'),
       ),
-      drawer: const Drawer(child: CustomDrawer()),
+      drawer: Drawer(child: CustomDrawer()),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -67,27 +67,40 @@ class Home extends StatelessWidget {
 }
 
 class CustomDrawer extends StatelessWidget {
-  const CustomDrawer({super.key});
+  CustomDrawer({super.key});
+
+  final authService = AuthHttpServices();
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         SafeArea(
-          child: ListTile(
-            title: const Text('Tizimdan chiqish'),
-            trailing: const Icon(Icons.exit_to_app_rounded),
-            onTap: () {
-              AuthHttpServices.logout();
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (ctx) {
-                    return const LoginScreen();
-                  },
-                ),
-              );
-            },
+          child: Column(
+            children: [
+              ListTile(
+                title: const Text('Tizimdan chiqish'),
+                trailing: const Icon(Icons.exit_to_app_rounded),
+                onTap: () {
+                  AuthHttpServices.logout();
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (ctx) {
+                        return const LoginScreen();
+                      },
+                    ),
+                  );
+                },
+              ),
+              ListTile(
+                title: const Text('Reset Password'),
+                trailing: const Icon(Icons.exit_to_app_rounded),
+                onTap: () {
+                  authService.resetPassword();
+                },
+              ),
+            ],
           ),
         ),
       ],

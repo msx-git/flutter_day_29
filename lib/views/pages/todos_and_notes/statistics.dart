@@ -14,7 +14,7 @@ class Statistics extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Statistics'),
       ),
-      drawer: const Drawer(child: CustomDrawer()),
+      drawer:  Drawer(child: CustomDrawer()),
       body: FutureBuilder(
         future: todosViewmodel.todos,
         builder: (context, snapshot) {

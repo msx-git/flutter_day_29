@@ -11,7 +11,7 @@ class Profile extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Profile'),
       ),
-      drawer: const Drawer(child: CustomDrawer()),
+      drawer:  Drawer(child: CustomDrawer()),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
