@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_day_29/utils/route_names.dart';
 
-import '../../../../../models/course.dart';
+import '../../../models/course.dart';
 
-class CourseItem extends StatelessWidget {
-  const CourseItem({super.key, required this.course});
+class CartCourseItem extends StatelessWidget {
+  const CartCourseItem({super.key, required this.course});
 
   final Course course;
 
@@ -12,11 +11,11 @@ class CourseItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(
-          context,
-          RouteNames.courseDetails,
-          arguments: course,
-        );
+        // Navigator.pushNamed(
+        //   context,
+        //   RouteNames.courseDetails,
+        //   arguments: course,
+        // );
       },
       child: Container(
         padding: const EdgeInsets.all(10),
@@ -62,7 +61,7 @@ class CourseItem extends StatelessWidget {
                 ],
               ),
             ),
-            const Icon(Icons.arrow_forward_ios_rounded)
+            //const Icon(Icons.arrow_forward_ios_rounded)
           ],
         ),
       ),

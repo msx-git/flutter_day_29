@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_day_29/views/pages/cart/cart_page.dart';
 import 'package:flutter_day_29/views/pages/todos_and_notes/home.dart';
 import 'package:flutter_day_29/views/pages/todos_and_notes/profile.dart';
 
@@ -49,8 +50,9 @@ class _MainPageState extends State<MainPage> {
                 child: IndexedStack(
                   index: currentIndex,
                   children: [
-                    const Home(),
+                    Home(),
                     Statistics(),
+                    CartPage(),
                     const Profile(),
                   ],
                 ),
@@ -72,6 +74,11 @@ class _MainPageState extends State<MainPage> {
                       selectedIcon: Icon(Icons.insert_chart),
                       icon: Icon(Icons.insert_chart_outlined),
                       label: 'Statistics',
+                    ),
+                    NavigationDestination(
+                      selectedIcon: Icon(Icons.shopping_cart),
+                      icon: Icon(Icons.shopping_cart_outlined),
+                      label: 'Cart',
                     ),
                     NavigationDestination(
                       selectedIcon: Icon(Icons.person_rounded),
