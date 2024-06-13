@@ -5,13 +5,16 @@ import 'package:flutter_day_29/models/lesson.dart';
 import 'package:flutter_day_29/models/quiz.dart';
 import 'package:flutter_day_29/utils/route_names.dart';
 import 'package:flutter_day_29/views/pages/todos_and_notes/widgets/course/courses_list.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../services/auth_http_service.dart';
 import '../../../viewmodels/courses_viewmodel.dart';
 import '../auth/sign_in.dart';
 
 class Home extends StatefulWidget {
-  Home({super.key});
+  const Home({super.key, required this.changeLang});
+
+  final ValueChanged<int> changeLang;
 
   @override
   State<Home> createState() => _HomeState();
@@ -24,9 +27,9 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Todos and Notes'),
+        title: Text(AppLocalizations.of(context)!.mainTitle),
       ),
-      drawer: Drawer(child: CustomDrawer()),
+      drawer: Drawer(child: CustomDrawer(changeLang: widget.changeLang)),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -38,24 +41,24 @@ class _HomeState extends State<Home> {
             children: [
               GestureDetector(
                 onTap: () => Navigator.pushNamed(context, RouteNames.todosList),
-                child: const Card(
+                child: Card(
                   child: Center(
                     child: Text(
-                      'Todos',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                      AppLocalizations.of(context)!.todos,
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.w500),
                     ),
                   ),
                 ),
               ),
               GestureDetector(
                 onTap: () => Navigator.pushNamed(context, RouteNames.notesList),
-                child: const Card(
+                child: Card(
                   child: Center(
                     child: Text(
-                      'Notes',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                      AppLocalizations.of(context)!.notes,
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.w500),
                     ),
                   ),
                 ),
@@ -69,8 +72,8 @@ class _HomeState extends State<Home> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  'Courses',
+                Text(
+                  AppLocalizations.of(context)!.courses,
                   style: TextStyle(fontWeight: FontWeight.w500, fontSize: 30),
                 ),
                 IconButton(
@@ -119,7 +122,9 @@ class _HomeState extends State<Home> {
 }
 
 class CustomDrawer extends StatelessWidget {
-  CustomDrawer({super.key});
+  CustomDrawer({super.key, required this.changeLang});
+
+  final ValueChanged<int> changeLang;
 
   final authService = AuthHttpServices();
 
@@ -131,7 +136,7 @@ class CustomDrawer extends StatelessWidget {
           child: Column(
             children: [
               ListTile(
-                title: const Text('Tizimdan chiqish'),
+                title: Text(AppLocalizations.of(context)!.signOut),
                 trailing: const Icon(Icons.exit_to_app_rounded),
                 onTap: () {
                   AuthHttpServices.logout();
@@ -146,11 +151,26 @@ class CustomDrawer extends StatelessWidget {
                 },
               ),
               ListTile(
-                title: const Text('Reset Password'),
+                title: Text(AppLocalizations.of(context)!.resetPassword),
                 trailing: const Icon(Icons.exit_to_app_rounded),
                 onTap: () {
                   authService.resetPassword();
                 },
+              ),
+              ListTile(
+                leading: const Text('🇺🇿'),
+                title: const Text("O'zbekcha"),
+                onTap: () => changeLang(2),
+              ),
+              ListTile(
+                leading: const Text('🇬🇧'),
+                title: const Text("English"),
+                onTap: () => changeLang(0),
+              ),
+              ListTile(
+                leading: const Text('🇷🇺'),
+                title: const Text("Русский"),
+                onTap: () => changeLang(1),
               ),
             ],
           ),

@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../viewmodels/todos_viewmodel.dart';
 import 'home.dart';
 
 class Statistics extends StatelessWidget {
-  Statistics({super.key});
+  Statistics({super.key, required this.changeLang});
 
   final todosViewmodel = TodosViewModel();
+  final ValueChanged<int> changeLang;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Statistics'),
+        title: Text(AppLocalizations.of(context)!.statistics),
       ),
-      drawer:  Drawer(child: CustomDrawer()),
+      drawer: Drawer(
+          child: CustomDrawer(
+        changeLang: changeLang,
+      )),
       body: FutureBuilder(
         future: todosViewmodel.todos,
         builder: (context, snapshot) {
@@ -36,11 +40,12 @@ class Statistics extends StatelessWidget {
             return const Text("No data");
           }
           return Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Completed todos: $doneCount"),
-              Text("Not Completed todos: $notDoneCount"),
+              const SizedBox(width: double.infinity),
+              Text("${AppLocalizations.of(context)!.doneTodo}: $doneCount"),
+              Text("${AppLocalizations.of(context)!.unDoneDodos}: $notDoneCount"),
             ],
           );
         },

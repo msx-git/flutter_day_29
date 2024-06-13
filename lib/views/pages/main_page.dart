@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_day_29/views/pages/cart/cart_page.dart';
 import 'package:flutter_day_29/views/pages/todos_and_notes/home.dart';
 import 'package:flutter_day_29/views/pages/todos_and_notes/profile.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'todos_and_notes/statistics.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+  const MainPage({super.key, required this.changeLang});
+
+  final ValueChanged<int> changeLang;
 
   @override
   State<MainPage> createState() => _MainPageState();
@@ -50,10 +53,10 @@ class _MainPageState extends State<MainPage> {
                 child: IndexedStack(
                   index: currentIndex,
                   children: [
-                    Home(),
-                    Statistics(),
-                    CartPage(),
-                    const Profile(),
+                    Home(changeLang: widget.changeLang),
+                    Statistics(changeLang: widget.changeLang),
+                    const CartPage(),
+                    Profile(changeLang: widget.changeLang),
                   ],
                 ),
               ),
@@ -64,26 +67,26 @@ class _MainPageState extends State<MainPage> {
                   selectedIndex: currentIndex,
                   onDestinationSelected: (value) =>
                       setState(() => currentIndex = value),
-                  destinations: const [
+                  destinations: [
                     NavigationDestination(
-                      icon: Icon(Icons.home_outlined),
-                      selectedIcon: Icon(Icons.home),
-                      label: 'Home',
+                      icon: const Icon(Icons.home_outlined),
+                      selectedIcon: const Icon(Icons.home),
+                      label: AppLocalizations.of(context)!.main,
                     ),
                     NavigationDestination(
-                      selectedIcon: Icon(Icons.insert_chart),
-                      icon: Icon(Icons.insert_chart_outlined),
-                      label: 'Statistics',
+                      selectedIcon: const Icon(Icons.insert_chart),
+                      icon: const Icon(Icons.insert_chart_outlined),
+                      label: AppLocalizations.of(context)!.statistics,
                     ),
                     NavigationDestination(
-                      selectedIcon: Icon(Icons.shopping_cart),
-                      icon: Icon(Icons.shopping_cart_outlined),
-                      label: 'Cart',
+                      selectedIcon: const Icon(Icons.shopping_cart),
+                      icon: const Icon(Icons.shopping_cart_outlined),
+                      label: AppLocalizations.of(context)!.cart,
                     ),
                     NavigationDestination(
-                      selectedIcon: Icon(Icons.person_rounded),
-                      icon: Icon(Icons.person_outline_rounded),
-                      label: 'Profile',
+                      selectedIcon: const Icon(Icons.person_rounded),
+                      icon: const Icon(Icons.person_outline_rounded),
+                      label: AppLocalizations.of(context)!.profile,
                     ),
                   ],
                 )

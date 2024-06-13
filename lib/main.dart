@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_day_29/views/pages/auth/sign_in.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'constants/app_theme.dart';
 import 'services/auth_http_service.dart';
 import 'utils/route_generator.dart';
@@ -20,6 +20,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final authHttpServices = AuthHttpServices();
   bool isLoggedIn = false;
+
   @override
   void initState() {
     super.initState();
@@ -31,14 +32,21 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  int _selectedLang = 0;
+
+  void setLang(int i) => setState(() => _selectedLang = i);
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: AppTheme.appTheme,
-      home: isLoggedIn ? const MainPage() : const LoginScreen(),
+      home: isLoggedIn ? MainPage(changeLang: setLang) : const LoginScreen(),
       onGenerateRoute: (settings) => RouteGenerator.generate(settings),
+      locale: AppLocalizations.supportedLocales[_selectedLang],
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
     );
   }
 }

@@ -13,7 +13,7 @@ import 'route_names.dart';
 class RouteGenerator {
   static generate(RouteSettings settings) {
     if (settings.name == RouteNames.home) {
-      return CupertinoPageRoute(builder: (context) => Home());
+      return CupertinoPageRoute(builder: (context) => Home(changeLang: (int value) {  },));
     } else if (settings.name == RouteNames.todosList) {
       return CupertinoPageRoute(builder: (context) => const TodosList());
     } else if (settings.name == RouteNames.notesList) {

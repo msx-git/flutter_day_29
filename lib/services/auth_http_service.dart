@@ -1,8 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter_day_29/services/database/local_database.dart';
-import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
+  import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthHttpServices {
@@ -12,15 +10,13 @@ class AuthHttpServices {
 
   factory AuthHttpServices() => _authHttpServices;
 
-
-
   final String _apiKey = "AIzaSyAU27_WcMezrFLYhdLauQB_n4FKb2WUm94";
 
   Future<void> _authenticate(
-      String email,
-      String password,
-      String query,
-      ) async {
+    String email,
+    String password,
+    String query,
+  ) async {
     Uri url = Uri.parse(
         "https://identitytoolkit.googleapis.com/v1/accounts:$query?key=$_apiKey");
 
@@ -41,7 +37,7 @@ class AuthHttpServices {
       }
 
       SharedPreferences sharedPreferences =
-      await SharedPreferences.getInstance();
+          await SharedPreferences.getInstance();
       await sharedPreferences.setString("token", data['idToken']);
       await sharedPreferences.setString("userId", data['localId']);
       DateTime expiryDate = DateTime.now().add(
@@ -56,10 +52,8 @@ class AuthHttpServices {
   Future<void> resetPassword() async {
     Uri url = Uri.parse(
         "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=$_apiKey");
-    final http.Response response = await http.post(url,body: {
-      'requestType':"PASSWORD_RESET",
-      'email':'msx.tuit@gmail.com'
-    });
+    final http.Response response = await http.post(url,
+        body: {'requestType': "PASSWORD_RESET", 'email': 'msx.tuit@gmail.com'});
     print(response.body);
   }
 
@@ -80,7 +74,7 @@ class AuthHttpServices {
     }
 
     DateTime expiryDate =
-    DateTime.parse(sharedPreferences.getString("expiryDate")!);
+        DateTime.parse(sharedPreferences.getString("expiryDate")!);
 
     //? check token expiration date
     return expiryDate.isAfter(DateTime.now());
@@ -90,7 +84,4 @@ class AuthHttpServices {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     sharedPreferences.clear();
   }
-
-
-
 }

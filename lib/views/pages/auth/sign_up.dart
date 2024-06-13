@@ -35,7 +35,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           context,
           MaterialPageRoute(
             builder: (ctx) {
-              return  Home();
+              return  Home(changeLang: (int value) {  },);
             },
           ),
         );

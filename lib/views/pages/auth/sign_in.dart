@@ -33,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
           context,
           MaterialPageRoute(
             builder: (ctx) {
-              return const MainPage();
+              return MainPage(changeLang: (int value) {  },);
             },
           ),
         );
